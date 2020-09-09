@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../../web-component-tester/browser.js"></script>
+
+  <script type="module" src="../../src/vl-breadcrumb.js"></script>
+</head>
+
+<body>
+  <test-fixture id="vl-breadcrumb-fixture">
+    <template>
+      <nav is="vl-breadcrumb">
+        <ol>
+          <li>
+            <a href="#">Vlaanderen Intern</a>
+          </li>
+          <li>
+            <a href="#">Regelgeving</a>
+          </li>
+          <li>
+            <a href="#">Webuniversum</a>
+          </li>
+          <li>
+            <a href="#">Componenten</a>
+          </li>
+        </ol>
+      </nav>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('vl-breadcrumb', () => {
+      const should = chai.should();
+    
+      test('bevat de breadcrumb class', () => {
+        const breadcrumb = fixture('vl-breadcrumb-fixture');
+        assert.isTrue(breadcrumb.classList.contains('vl-breadcrumb'));
+      });
+
+      test('zet de correcte classes op de ol, li en a child elementen', () => {
+        const breadcrumb = fixture('vl-breadcrumb-fixture');
+        breadcrumb._olElements.forEach((ol) => assert.isTrue(ol.classList.contains('vl-breadcrumb__list')));
+        breadcrumb._liElements.forEach((li) => assert.isTrue(li.classList.contains('vl-breadcrumb__list__item')));
+        breadcrumb._aElements.forEach((a) => assert.isTrue(a.classList.contains('vl-breadcrumb__list__item__cta')));
+      });
+
+      test('voor elke item uit de lijst wordt een separator element toegevoegd, uitgezonderd het eerste item', () => {
+        const breadcrumb = fixture('vl-breadcrumb-fixture');
+        const separatorClass = '.vl-breadcrumb__list__item__separator';
+        should.not.exist(breadcrumb._liElements[0].querySelector(separatorClass));
+        should.exist(breadcrumb._liElements[1].querySelector(separatorClass));
+        should.exist(breadcrumb._liElements[2].querySelector(separatorClass));
+        should.exist(breadcrumb._liElements[3].querySelector(separatorClass));
+      });
+    });
+  </script>
+</body>
+
+</html>
