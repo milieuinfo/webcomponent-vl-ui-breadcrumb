@@ -1,14 +1,15 @@
-const {assert, driver} = require('vl-ui-core').Test.Setup;
+const {assert, getDriver} = require('vl-ui-core').Test.Setup;
 const VlBreadcrumbPage = require('./pages/vl-breadcrumb.page');
 
 describe('vl-breadcrumb', async () => {
-  const vlBreadcrumbPage = new VlBreadcrumbPage(driver);
+  let vlBreadcrumbPage;
 
   before(() => {
+    vlBreadcrumbPage = new VlBreadcrumbPage(getDriver());
     return vlBreadcrumbPage.load();
   });
 
-  it('Als gebruiker kan ik een breadcrumb met items zien', async () => {
+  it('als gebruiker kan ik een breadcrumb met items zien', async () => {
     const breadcrumb = await vlBreadcrumbPage.getBreadcrumb();
     await assert.eventually.isTrue(breadcrumb.isDisplayed());
     await assert.eventually.lengthOf(breadcrumb.getLinks(), 4);
