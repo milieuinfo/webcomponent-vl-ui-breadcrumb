@@ -1,6 +1,6 @@
 {
 	"name": "vl-ui-breadcrumb",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Gebruik de breadcrumb om de locatie van de huidige pagina binnen een navigatie hiërarchie te tonen",
 	"author": "DIDM",
 	"license": "MIT",
