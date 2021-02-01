@@ -1,3 +1,1 @@
-module.exports = {
-  VlBreadcrumb: require('../dist/vl-breadcrumb.src.js').VlBreadcrumb,
-};
+export * from '../dist/vl-breadcrumb.src.js';
