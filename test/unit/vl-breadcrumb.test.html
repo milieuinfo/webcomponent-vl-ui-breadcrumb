@@ -31,6 +31,12 @@
     </template>
   </test-fixture>
 
+  <test-fixture id="vl-breadcrumb-aria-label-fixture">
+    <template>
+      <nav is="vl-breadcrumb" aria-label="Broodkruimel"></nav>
+    </template>
+  </test-fixture>
+
   <script>
     suite('vl-breadcrumb', () => {
       const should = chai.should();
@@ -54,6 +60,13 @@
         should.exist(breadcrumb._liElements[1].querySelector(separatorClass));
         should.exist(breadcrumb._liElements[2].querySelector(separatorClass));
         should.exist(breadcrumb._liElements[3].querySelector(separatorClass));
+      });
+
+      test('wanneer er geen aria-label attribuut aanwezig is, zal er standaard een aria-label toegevoegd worden', () => {
+        const breadcrumb = fixture('vl-breadcrumb-fixture');
+        const breadcrumbWithAriaLabel = fixture('vl-breadcrumb-aria-label-fixture');
+        assert.equal(breadcrumb.getAttribute('aria-label'), 'U bent hier: ');
+        assert.equal(breadcrumbWithAriaLabel.getAttribute('aria-label'), 'Broodkruimel');
       });
     });
   </script>
