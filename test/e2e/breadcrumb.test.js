@@ -9,6 +9,10 @@ describe('vl-breadcrumb', async () => {
     return vlBreadcrumbPage.load();
   });
 
+  it('WCAG', async () => {
+    await assert.eventually.isFalse(vlBreadcrumbPage.hasWcagIssues());
+  });
+
   it('als gebruiker kan ik een breadcrumb met items zien', async () => {
     const breadcrumb = await vlBreadcrumbPage.getBreadcrumb();
     await assert.eventually.isTrue(breadcrumb.isDisplayed());
